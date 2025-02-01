@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="task"
+            type="org.dieschnittstelle.mobile.android.skeleton.model.Task" />
+        <variable
+            name="taskListViewModel"
+            type="org.dieschnittstelle.mobile.android.skeleton.viewmodel.TaskListViewModel" />
+    </data>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="15dp">
+
+        <TableRow>
+            <TextView
+                android:id="@+id/taskName"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_column="1"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="@={task.name}"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+        </TableRow>
+
+        <TableRow>
+            <Spinner
+                android:id="@+id/dropdownPriority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginStart="10dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:minWidth="100dp"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/taskDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_marginStart="15dp"
+                android:text="@{taskListViewModel.toDueDateString(task.expiry)}"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginBottom="5dp"
+            android:gravity="end">
+            <CheckBox
+                android:id="@+id/taskFavorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:checked="@={task.favorite}"
+                android:focusable="false"
+                android:onClick="@{() -> taskListViewModel.updateTask(task)}"
+                android:text="@string/checkbox_favorite"
+                app:buttonTint="@color/colorAccent"/>
+            <CheckBox
+                android:id="@+id/taskCompleted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:layout_marginEnd="20dp"
+                android:checked="@={task.completed}"
+                android:focusable="false"
+                android:onClick="@{() -> taskListViewModel.updateTask(task)}"
+                android:text="@string/checkbox_done"
+                app:buttonTint="@color/colorAccent"/>
+        </TableRow>
+    </TableLayout>
+</layout>

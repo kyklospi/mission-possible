@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00965D</color>
+    <color name="colorPrimaryDark">#002A27</color>
+    <color name="colorAccent">#009688</color>
+    <color name="colorTaskPrioCritical">#D9A0A0</color>
+    <color name="colorTaskPrioHigh">#D3D382</color>
+    <color name="colorTaskPrioNormal">#82D38A</color>
+    <color name="colorTaskPrioLow">#7AB5C7</color>
+    <color name="colorTaskPrioNone">#BABABA</color>
+</resources>

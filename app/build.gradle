@@ -1,0 +1,94 @@
+apply plugin: "com.android.application"
+apply plugin: 'com.google.gms.google-services'
+apply plugin: "com.google.android.libraries.mapsplatform.secrets-gradle-plugin"
+
+android {
+    compileSdk 34
+    defaultConfig {
+        applicationId "org.dieschnittstelle.mobile.android.skeleton"
+        minSdkVersion 24
+        targetSdkVersion 34
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility "11"
+        targetCompatibility "11"
+    }
+    namespace 'org.dieschnittstelle.mobile.android.skeleton'
+    packagingOptions {
+        exclude 'META-INF/versions/9/OSGI-INF/MANIFEST.MF'
+    }
+}
+
+dependencies {
+    implementation 'com.android.identity:identity-jvm:202411.1'
+    implementation 'com.google.android.gms:play-services-nearby:19.3.0'
+    def room_version = "2.6.1"
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // androidx dependencies
+    implementation 'androidx.core:core:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    // constraint layout
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    // material
+    implementation 'com.google.android.material:material:1.12.0'
+    // room orm
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    testImplementation "androidx.room:room-testing:$room_version"
+    // retrofit api client
+    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.2'
+    // firebase authentication and db
+    // note that firebase-core is not required anymore
+    implementation 'com.google.firebase:firebase-auth:23.0.0'
+    implementation 'com.google.firebase:firebase-firestore:25.1.0'
+    // rxjava / rxandroid for async task alternative
+    implementation "io.reactivex.rxjava2:rxjava:2.2.6"
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+    // coordinator layout required for snackbar
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
+    // include Maps SDK for Android
+    implementation "com.google.android.gms:play-services-maps:19.0.0"
+    implementation "com.google.maps.android:android-maps-utils:3.8.2"
+    // test setting
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+secrets {
+    // To add your Maps API key to this project:
+    // 1. If the secrets.properties file does not exist, create it in the same folder as the local.properties file.
+    // 2. Add this line MAPS_API_KEY=$YOUR_API_KEY, where $YOUR_API_KEY is your API key
+    propertiesFileName = "secrets.properties"
+
+    // A properties file containing default secret values. This file can be
+    // checked in version control.
+    defaultPropertiesFileName = "local.defaults.properties"
+
+    // Configure which keys should be ignored by the plugin by providing regular expressions.
+    // "sdk.dir" is ignored by default.
+    ignoreList.add("keyToIgnore") // Ignore the key "keyToIgnore"
+    ignoreList.add("sdk.*")       // Ignore all keys matching the regexp "sdk.*"
+}

@@ -1,0 +1,78 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="contact"
+            type="String" />
+        <variable
+            name="taskDetailViewModel"
+            type="org.dieschnittstelle.mobile.android.skeleton.viewmodel.TaskDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/contactName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:text="@{contact}"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHeight="30dp"/>
+
+        <ImageButton
+            android:id="@+id/contactMailButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/common_google_signin_btn_text_dark"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/mail_contact_button_text"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/contactSmsButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/mail_16dp"
+            app:tint="@color/colorAccent"/>
+
+        <ImageButton
+            android:id="@+id/contactSmsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/common_google_signin_btn_text_dark"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/sms_contact_button_text"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/contactDeleteButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/sms_16dp"
+            app:tint="@color/colorAccent" />
+
+        <ImageButton
+            android:id="@+id/contactDeleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/common_google_signin_btn_text_dark"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/delete_contact_button_text"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:onClick="@{() -> taskDetailViewModel.deleteContact(contact)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/contactName"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/person_remove_16dp"
+            app:tint="#FF0000" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

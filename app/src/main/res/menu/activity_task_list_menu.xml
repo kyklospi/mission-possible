@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="@string/sort_done_menu_text" android:id="@+id/sortTasks" android:icon="@drawable/sort_24dp"/>
+    <item android:title="@string/sort_priority_menu_text" android:id="@+id/sortTasksByPrio" android:icon="@drawable/sort_24dp"/>
+    <item android:title="@string/sort_date_menu_text" android:id="@+id/sortTasksByDate" android:icon="@drawable/sort_24dp"/>
+    <item android:title="@string/delete_all_local_menu_text" android:id="@+id/deleteAllLocalTasks"/>
+    <item android:title="@string/delete_all_remote_menu_text" android:id="@+id/deleteAllRemoteTasks"/>
+    <item android:title="@string/sync_database_menu_text" android:id="@+id/syncLocalRemoteDB"/>
+    <item android:title="@string/show_map_view" android:id="@+id/showMapView" android:icon="@drawable/map_white_24dp" app:showAsAction="always"/>
+</menu>
